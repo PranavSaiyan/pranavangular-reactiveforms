@@ -16,7 +16,9 @@ export class AppComponent implements OnInit {
     gender:'',
     answer:''
   };
-
+  onSubmit() {
+    console.log(this.myForm);
+  }
   ngOnInit(){
     this.myForm = new FormGroup({
       'username': new FormControl(null),
