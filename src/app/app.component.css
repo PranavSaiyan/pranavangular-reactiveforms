@@ -1,3 +1,3 @@
-p {
-  font-family: Lato;
+input.ng-invalid.ng-touched{
+  border: red 3px solid;
 }
