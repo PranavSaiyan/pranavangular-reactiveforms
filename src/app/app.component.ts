@@ -6,6 +6,7 @@ import { FormGroup,FormArray, FormControl , Validators } from '@angular/forms';
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent implements OnInit {
+  forbiddenNames = ['Anna','Chris'];
   myForm: FormGroup;
   genders = ['Male','Female','Others'];
   answer = '';
@@ -25,7 +26,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(){
     this.myForm = new FormGroup({
-      'username': new FormControl(null, Validators.required),
+      'username': new FormControl(null, [Validators.required,this.forbiddenNamesValidator.bind(this)]),
       'email': new FormControl(null,[Validators.required, Validators.email]),
       'password': new FormControl(null,Validators.required),
       'gender': new FormControl('Male'),
@@ -33,5 +34,13 @@ export class AppComponent implements OnInit {
       'answer': new FormControl(null),
       'hobbies': new FormArray([])
     });
+  }
+
+  forbiddenNamesValidator(control: FormControl):{[s:string]: boolean } {
+    if(this.forbiddenNames.indexOf(control.value)!==-1) {
+      return {'nameIsForbidden':true};
+    }else{
+      return null;
+    }
   }
 }
