@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   };
   onSubmit() {
     console.log(this.myForm);
+    this.myForm.reset()
   }
   addHobby(){
     const control = new FormControl(null, Validators.required);
@@ -43,6 +44,9 @@ export class AppComponent implements OnInit {
     // this.myForm.valueChanges.subscribe(
     //   (values)=> {console.log(values);}
     // )
+
+    // this.myForm.setValue()
+    //this.myForm.patchValue()
   }
 
   forbiddenNamesValidator(control: FormControl):{[s:string]: boolean } {
